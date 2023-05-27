@@ -6,7 +6,7 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 10:21:39 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2023/05/27 12:52:19 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2023/05/27 15:57:21 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int ft_checkword(char **ans,char const *s ,char c)
             i++;
         if(s[i]!='\0')
         {
-            while(s[i+j]!=c)
+            while(s[i+j]!=c&&s[i+j]!='\0')
                 j++;
         
             if((ans[count]=(char *)malloc(sizeof(char)*j+1))==NULL)
@@ -76,7 +76,7 @@ char **ft_split(char const *s, char c)
     char **ans;
     int i;
     int len;
-
+    
     len = ft_wordcount(s,c);
     if((ans=(char **)malloc(sizeof(char *)*(len+1)))==NULL)
         return NULL;
@@ -89,9 +89,28 @@ char **ft_split(char const *s, char c)
     
 }
 
-
+// int	main(void)
+//  {
+//  	int		index;
+//  	char	**tab;
+//  	tab = ft_split("AxBxCCCxDDDDxEExxxF", 'x');
+//  	index = 0;
+//  	while (tab[index])
+//  	{
+//  		free(tab[index++]);
+//  	}
+//  	free(tab);
+//  	while (1);
+//  }
 int main(void)
 {
- char * * tab = ft_split("tripouille", 0);
- printf("%s",tab[1]);
+    int index;
+ char **tab = ft_split("ss","");
+ printf("%s",tab[0]);
+ index = 0;
+ 	// while (tab[index])
+ 	// {
+ 	// 	free(tab[0][index++]);
+ 	// }
+    // free(tab);
 }
