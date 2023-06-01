@@ -1,46 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 10:31:35 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2023/06/01 16:23:15 by kyoshida         ###   ########.fr       */
+/*   Created: 2023/05/17 17:26:58 by kyoshida          #+#    #+#             */
+/*   Updated: 2023/06/01 16:22:52 by kyoshida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// char	addOne(unsigned int i, char c)
-// {
-// 	return (i + c);
-// }
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	size_t	s_len;
-	size_t	i;
-	char	*ans;
+	char	*d;
+	char	*s;
 
-	s_len = ft_strlen(s);
-	if (!s)
+	d = (char *)dest;
+	s = (char *)src;
+	if (!dest || !src)
 		return (NULL);
-	ans = (char *)malloc(sizeof(char) * s_len + 1);
-	if (ans == NULL)
-		return (NULL);
-	i = 0;
-	while (i < s_len)
+	while (n > 0)
 	{
-		ans[i] = f(i, s[i]);
-		i++;
+		*d = *s;
+		d++;
+		s++;
+		n--;
 	}
-	ans[i] = '\0';
-	return (ans);
+	return (dest);
 }
 
 // int	main(void)
 // {
-// 	char *s = ft_strmapi("1234", addOne);
+// 	char str[100] = "asdfg";
+//   char  *t = NULL;
 
-// 	printf("%s", s);
+//   ft_memcpy(str, NULL, 3);
+// //   memcpy(NULL, str, 3);
+//   printf("ft_memcpy():  str = %s, t = %s\n", str, t);
 // }

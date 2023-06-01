@@ -1,46 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 10:31:35 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2023/06/01 16:23:15 by kyoshida         ###   ########.fr       */
+/*   Created: 2023/05/17 18:27:23 by kyoshida          #+#    #+#             */
+/*   Updated: 2023/05/31 15:18:52 by kyoshida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// char	addOne(unsigned int i, char c)
-// {
-// 	return (i + c);
-// }
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t	s_len;
-	size_t	i;
-	char	*ans;
+	char		*d;
+	int			i;
+	const char	*s;
 
-	s_len = ft_strlen(s);
-	if (!s)
-		return (NULL);
-	ans = (char *)malloc(sizeof(char) * s_len + 1);
-	if (ans == NULL)
-		return (NULL);
+	d = (char *)dst;
+	s = (char *)src;
 	i = 0;
-	while (i < s_len)
+	if (!dst || !src)
+		return (NULL);
+	if (d < s)
+		while (len--)
+			*d++ = *s++;
+	else if (d > s)
 	{
-		ans[i] = f(i, s[i]);
-		i++;
+		d += len - 1;
+		s += len - 1;
+		while (len--)
+			*d-- = *s--;
 	}
-	ans[i] = '\0';
-	return (ans);
+	return (dst);
 }
 
 // int	main(void)
 // {
-// 	char *s = ft_strmapi("1234", addOne);
-
-// 	printf("%s", s);
+// 	char *c;
+// 	c="aa";
+// 	ft_memmove(c,NULL,3);
+// 	printf("%s",c);
 // }

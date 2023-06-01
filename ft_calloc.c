@@ -1,46 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 10:31:35 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2023/06/01 16:23:15 by kyoshida         ###   ########.fr       */
+/*   Created: 2023/05/20 15:45:24 by kyoshida          #+#    #+#             */
+/*   Updated: 2023/05/31 18:51:53 by kyoshida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// char	addOne(unsigned int i, char c)
-// {
-// 	return (i + c);
-// }
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+void	*ft_calloc(size_t n, size_t size)
 {
-	size_t	s_len;
-	size_t	i;
-	char	*ans;
+	unsigned char	*tmp;
 
-	s_len = ft_strlen(s);
-	if (!s)
+	tmp = (unsigned char *)malloc(n * size);
+	if (tmp == NULL)
 		return (NULL);
-	ans = (char *)malloc(sizeof(char) * s_len + 1);
-	if (ans == NULL)
-		return (NULL);
-	i = 0;
-	while (i < s_len)
+	if (n == 0 || size == 0)
 	{
-		ans[i] = f(i, s[i]);
-		i++;
+		n = 1;
+		size = 1;
 	}
-	ans[i] = '\0';
-	return (ans);
+	if (n > SIZE_MAX / size)
+		return (NULL);
+	ft_memset(tmp, 0, n * size);
+	return (tmp);
 }
 
 // int	main(void)
 // {
-// 	char *s = ft_strmapi("1234", addOne);
+// 	char	*test;
 
-// 	printf("%s", s);
+// 	test = calloc(SIZE_MAX, SIZE_MAX+1);
+// 	printf("%s", test);
 // }

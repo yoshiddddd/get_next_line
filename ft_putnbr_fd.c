@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 09:41:31 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2023/05/25 21:43:45 by kyoshida         ###   ########.fr       */
+/*   Created: 2023/05/25 20:24:34 by kyoshida          #+#    #+#             */
+/*   Updated: 2023/05/31 15:00:33 by kyoshida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// #include<string.h>
-// #include<stdio.h>
-
-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+void	ft_putnbr_fd(int n, int fd)
 {
-	size_t	i;
+	long	i;
 
-	if (!s || !f)
-		return ;
-	i = 0;
-	while (s[i] != '\0')
+	i = (long)n;
+	if (i < 0)
 	{
-		f(i, &s[i]);
-		i++;
+		ft_putchar_fd('-', fd);
+		i *= -1;
+	}
+	if (i > 9)
+	{
+		ft_putnbr_fd(i / 10, fd);
+		ft_putnbr_fd(i % 10, fd);
+	}
+	else
+	{
+		ft_putchar_fd(i + '0', fd);
 	}
 }
-// int	main(void)
+
+// int main(void)
 // {
-// 	char s[] = "";
-// 	ft_striteri(s, iter);
-// 	printf("%s", s);
+
 // }

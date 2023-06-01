@@ -1,46 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 10:31:35 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2023/06/01 16:23:15 by kyoshida         ###   ########.fr       */
+/*   Created: 2023/03/16 11:41:14 by kyoshida          #+#    #+#             */
+/*   Updated: 2023/05/31 19:06:15 by kyoshida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// char	addOne(unsigned int i, char c)
-// {
-// 	return (i + c);
-// }
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
+	size_t	k;
+	size_t	num;
+	size_t	d_len;
 	size_t	s_len;
-	size_t	i;
-	char	*ans;
 
-	s_len = ft_strlen(s);
-	if (!s)
-		return (NULL);
-	ans = (char *)malloc(sizeof(char) * s_len + 1);
-	if (ans == NULL)
-		return (NULL);
-	i = 0;
-	while (i < s_len)
+	d_len = ft_strlen(dest);
+	s_len = ft_strlen(src);
+	if (size <= d_len)
+		return (size + s_len);
+	num = size - d_len - 1;
+	k = 0;
+	while (k < num && src[k] != '\0')
 	{
-		ans[i] = f(i, s[i]);
-		i++;
+		dest[d_len + k] = src[k];
+		k++;
 	}
-	ans[i] = '\0';
-	return (ans);
+	dest[k + d_len] = '\0';
+	return (s_len + d_len);
 }
 
 // int	main(void)
 // {
-// 	char *s = ft_strmapi("1234", addOne);
-
-// 	printf("%s", s);
+// 	size_t result1 = strlcat(NULL, NULL, 3);
+// 	printf("ft:%zu\n", result1);
 // }

@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 09:41:31 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2023/05/25 21:43:45 by kyoshida         ###   ########.fr       */
+/*   Created: 2023/05/17 14:47:39 by kyoshida          #+#    #+#             */
+/*   Updated: 2023/05/20 13:12:33 by kyoshida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// #include<string.h>
-// #include<stdio.h>
-
-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+void	ft_bzero(void *s, size_t n)
 {
-	size_t	i;
-
-	if (!s || !f)
-		return ;
-	i = 0;
-	while (s[i] != '\0')
-	{
-		f(i, &s[i]);
-		i++;
-	}
+	if (n != 0)
+		ft_memset(s, '\0', n);
 }
 // int	main(void)
 // {
-// 	char s[] = "";
-// 	ft_striteri(s, iter);
-// 	printf("%s", s);
+// 	char buf[] = "ABCDEFGHIJ";
+
+// 	//先頭から2バイト進めた位置に「１」を3バイト書き込む
+// 	bzero(buf + 2, 1);
+
+// 	//表示
+// 	printf("buf文字列→%s\n", buf);
+
+// 	return (0);
 // }

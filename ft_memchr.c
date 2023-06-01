@@ -1,46 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 10:31:35 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2023/06/01 16:23:15 by kyoshida         ###   ########.fr       */
+/*   Created: 2023/05/19 14:01:38 by kyoshida          #+#    #+#             */
+/*   Updated: 2023/05/30 19:56:28 by kyoshida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// char	addOne(unsigned int i, char c)
-// {
-// 	return (i + c);
-// }
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t	s_len;
-	size_t	i;
-	char	*ans;
+	unsigned char	*s2;
+	unsigned char	c2;
 
-	s_len = ft_strlen(s);
-	if (!s)
+	s2 = (unsigned char *)s;
+	c2 = (unsigned char)c;
+	if (!s2)
 		return (NULL);
-	ans = (char *)malloc(sizeof(char) * s_len + 1);
-	if (ans == NULL)
-		return (NULL);
-	i = 0;
-	while (i < s_len)
+	while (n > 0)
 	{
-		ans[i] = f(i, s[i]);
-		i++;
+		if (*s2 == c2)
+			return (s2);
+		s2++;
+		n--;
 	}
-	ans[i] = '\0';
-	return (ans);
+	return (NULL);
 }
 
 // int	main(void)
 // {
-// 	char *s = ft_strmapi("1234", addOne);
+// 	char s[] = {0, 1, 2 ,3 ,4 ,5};	char *p,*p2;
 
-// 	printf("%s", s);
+// 	p = ft_memchr(s, 2+256, 3);
+// 	p2 = memchr(s, 2+256, 3);
+// 	printf("検索文字は文字列の%ld番目\n", p - s);
+// 	// printf("%d",&p2);
+
+// 	return (0);
 // }

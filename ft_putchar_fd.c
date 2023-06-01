@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 09:41:31 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2023/05/25 21:43:45 by kyoshida         ###   ########.fr       */
+/*   Created: 2023/05/25 17:50:22 by kyoshida          #+#    #+#             */
+/*   Updated: 2023/05/30 20:20:23 by kyoshida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// #include<string.h>
-// #include<stdio.h>
-
-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+void	ft_putchar_fd(char c, int fd)
 {
-	size_t	i;
-
-	if (!s || !f)
-		return ;
-	i = 0;
-	while (s[i] != '\0')
-	{
-		f(i, &s[i]);
-		i++;
-	}
+	write(fd, &c, 1);
 }
-// int	main(void)
+
+// int main(void)
 // {
-// 	char s[] = "";
-// 	ft_striteri(s, iter);
-// 	printf("%s", s);
+
 // }

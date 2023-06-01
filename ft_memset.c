@@ -1,46 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 10:31:35 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2023/06/01 16:23:15 by kyoshida         ###   ########.fr       */
+/*   Created: 2023/05/17 13:46:39 by kyoshida          #+#    #+#             */
+/*   Updated: 2023/05/30 20:20:00 by kyoshida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// char	addOne(unsigned int i, char c)
-// {
-// 	return (i + c);
-// }
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+void	*ft_memset(void *buf, int ch, size_t n)
 {
-	size_t	s_len;
-	size_t	i;
-	char	*ans;
+	unsigned char	*ptr;
+	unsigned char	c;
 
-	s_len = ft_strlen(s);
-	if (!s)
+	ptr = (unsigned char *)buf;
+	c = (unsigned char)ch;
+	if (!buf)
 		return (NULL);
-	ans = (char *)malloc(sizeof(char) * s_len + 1);
-	if (ans == NULL)
-		return (NULL);
-	i = 0;
-	while (i < s_len)
+	while (n > 0)
 	{
-		ans[i] = f(i, s[i]);
-		i++;
+		*ptr++ = c;
+		n--;
 	}
-	ans[i] = '\0';
-	return (ans);
+	return (buf);
 }
 
-// int	main(void)
+// int main(void)
 // {
-// 	char *s = ft_strmapi("1234", addOne);
+// 	char buf[] = "ABCDEFGHIJ";
 
-// 	printf("%s", s);
+// 	//先頭から2バイト進めた位置に「１」を3バイト書き込む
+// 	memset(buf+2,'\0',-1);
+
+// 	//表示
+// 	printf("buf文字列→%s\n",buf);
+
+// 	return (0);
 // }

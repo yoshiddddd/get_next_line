@@ -1,46 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 10:31:35 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2023/06/01 16:23:15 by kyoshida         ###   ########.fr       */
+/*   Created: 2023/05/18 09:39:28 by yoshidakazu       #+#    #+#             */
+/*   Updated: 2023/05/30 20:26:45 by kyoshida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// char	addOne(unsigned int i, char c)
-// {
-// 	return (i + c);
-// }
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strrchr(const char *s, int c)
 {
-	size_t	s_len;
-	size_t	i;
-	char	*ans;
+	unsigned char	c2;
+	int				i;
 
-	s_len = ft_strlen(s);
-	if (!s)
-		return (NULL);
-	ans = (char *)malloc(sizeof(char) * s_len + 1);
-	if (ans == NULL)
-		return (NULL);
 	i = 0;
-	while (i < s_len)
-	{
-		ans[i] = f(i, s[i]);
+	c2 = (unsigned char)c;
+	while (s[i] != '\0')
 		i++;
+	while (i >= 0)
+	{
+		if (s[i] == c2)
+			return ((char *)s + i);
+		i--;
 	}
-	ans[i] = '\0';
-	return (ans);
+	return (NULL);
 }
 
 // int	main(void)
 // {
-// 	char *s = ft_strmapi("1234", addOne);
+// char s[] = "tripouille";
+//         // char s2[] = "ltripouiel";
+//         // char s3[] = "";
+// 	char *p;
 
-// 	printf("%s", s);
+// 	p = ft_strrchr(s, 0);
+
+// 	printf("検索文字が見つかった場所から表示→%s\n",p);
 // }

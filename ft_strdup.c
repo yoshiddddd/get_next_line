@@ -1,46 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 10:31:35 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2023/06/01 16:23:15 by kyoshida         ###   ########.fr       */
+/*   Created: 2023/05/20 19:40:58 by kyoshida          #+#    #+#             */
+/*   Updated: 2023/05/30 20:21:34 by kyoshida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// char	addOne(unsigned int i, char c)
-// {
-// 	return (i + c);
-// }
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strdup(const char *s)
 {
-	size_t	s_len;
-	size_t	i;
-	char	*ans;
+	int		i;
+	int		k;
+	char	*s2;
 
-	s_len = ft_strlen(s);
+	i = 0;
 	if (!s)
 		return (NULL);
-	ans = (char *)malloc(sizeof(char) * s_len + 1);
-	if (ans == NULL)
-		return (NULL);
-	i = 0;
-	while (i < s_len)
-	{
-		ans[i] = f(i, s[i]);
+	while (s[i] != '\0')
 		i++;
+	s2 = (char *)malloc(sizeof(char) * i + 1);
+	if (s2 == NULL)
+		return (NULL);
+	k = 0;
+	while (s[k] != '\0')
+	{
+		s2[k] = s[k];
+		k++;
 	}
-	ans[i] = '\0';
-	return (ans);
+	s2[k] = '\0';
+	return (s2);
 }
 
-// int	main(void)
+// int main(void)
 // {
-// 	char *s = ft_strmapi("1234", addOne);
 
-// 	printf("%s", s);
 // }

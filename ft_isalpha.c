@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 09:41:31 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2023/05/25 21:43:45 by kyoshida         ###   ########.fr       */
+/*   Created: 2023/05/16 18:49:28 by kyoshida          #+#    #+#             */
+/*   Updated: 2023/05/17 17:23:26 by kyoshida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// #include<string.h>
-// #include<stdio.h>
-
-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+int	ft_isalpha(int num)
 {
-	size_t	i;
-
-	if (!s || !f)
-		return ;
-	i = 0;
-	while (s[i] != '\0')
-	{
-		f(i, &s[i]);
-		i++;
-	}
+	return ((65 <= num && num <= 90) || (97 <= num && num <= 122));
 }
+
 // int	main(void)
 // {
-// 	char s[] = "";
-// 	ft_striteri(s, iter);
-// 	printf("%s", s);
+// 	if (ft_isalpha('3') == 0)
+// 		puts("no");
+// 	else
+// 		puts("yes");
 // }

@@ -1,46 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 10:31:35 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2023/06/01 16:23:15 by kyoshida         ###   ########.fr       */
+/*   Created: 2023/05/25 20:19:48 by kyoshida          #+#    #+#             */
+/*   Updated: 2023/05/31 17:48:28 by kyoshida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// char	addOne(unsigned int i, char c)
-// {
-// 	return (i + c);
-// }
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+void	ft_putendl_fd(char *s, int fd)
 {
-	size_t	s_len;
-	size_t	i;
-	char	*ans;
+	int	i;
 
-	s_len = ft_strlen(s);
-	if (!s)
-		return (NULL);
-	ans = (char *)malloc(sizeof(char) * s_len + 1);
-	if (ans == NULL)
-		return (NULL);
 	i = 0;
-	while (i < s_len)
+	if (!s)
+		return ;
+	while (s[i] != '\0')
 	{
-		ans[i] = f(i, s[i]);
+		write(fd, &s[i], 1);
 		i++;
 	}
-	ans[i] = '\0';
-	return (ans);
+	write(fd, "\n", 1);
 }
 
-// int	main(void)
+// int main(void)
 // {
-// 	char *s = ft_strmapi("1234", addOne);
 
-// 	printf("%s", s);
 // }
