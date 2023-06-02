@@ -6,7 +6,7 @@
 /*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:31:35 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2023/06/01 16:23:15 by kyoshida         ###   ########.fr       */
+/*   Updated: 2023/06/02 14:19:36 by kyoshida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char	*ans;
 
 	s_len = ft_strlen(s);
-	if (!s)
+	if (!s ||!f)
 		return (NULL);
 	ans = (char *)malloc(sizeof(char) * s_len + 1);
 	if (ans == NULL)

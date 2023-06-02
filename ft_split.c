@@ -6,7 +6,7 @@
 /*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:45:15 by kyoshida          #+#    #+#             */
-/*   Updated: 2023/05/31 15:06:35 by kyoshida         ###   ########.fr       */
+/*   Updated: 2023/06/02 14:25:25 by kyoshida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static int	ft_free(char **ans, int len)
 		free(ans[len]);
 		len--;
 	}
+	free(ans);
 	return (-1);
 }
 

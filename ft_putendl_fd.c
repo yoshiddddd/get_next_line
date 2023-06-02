@@ -6,7 +6,7 @@
 /*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 20:19:48 by kyoshida          #+#    #+#             */
-/*   Updated: 2023/05/31 17:48:28 by kyoshida         ###   ########.fr       */
+/*   Updated: 2023/06/02 14:18:59 by kyoshida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,7 @@ void	ft_putendl_fd(char *s, int fd)
 	i = 0;
 	if (!s)
 		return ;
-	while (s[i] != '\0')
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
+	write(fd, s, ft_strlen(s));
 	write(fd, "\n", 1);
 }
 

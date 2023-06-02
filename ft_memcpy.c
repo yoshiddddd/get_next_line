@@ -6,7 +6,7 @@
 /*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 17:26:58 by kyoshida          #+#    #+#             */
-/*   Updated: 2023/06/01 16:22:52 by kyoshida         ###   ########.fr       */
+/*   Updated: 2023/06/02 16:29:22 by kyoshida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 
 	d = (char *)dest;
 	s = (char *)src;
-	if (!dest || !src)
+	if (!dest && !src)
 		return (NULL);
 	while (n > 0)
 	{

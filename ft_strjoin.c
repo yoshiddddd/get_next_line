@@ -6,7 +6,7 @@
 /*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 16:38:27 by kyoshida          #+#    #+#             */
-/*   Updated: 2023/05/31 17:43:30 by kyoshida         ###   ########.fr       */
+/*   Updated: 2023/06/02 14:27:49 by kyoshida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	ft_count2(const char *c, const char *c2)
 {
-	int	i;
-	int	k;
+	size_t	i;
+	size_t	k;
 
 	i = 0;
 	k = 0;

@@ -6,7 +6,7 @@
 /*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 20:16:04 by kyoshida          #+#    #+#             */
-/*   Updated: 2023/05/30 19:56:05 by kyoshida         ###   ########.fr       */
+/*   Updated: 2023/06/02 14:12:26 by kyoshida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_isdigit(int num)
 {
-	return (48 <= num && num <= 57);
+	return ('0' <= num && num <= '9');
 }
 
 // int	main(void)

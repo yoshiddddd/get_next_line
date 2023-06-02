@@ -6,7 +6,7 @@
 /*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 13:22:06 by kyoshida          #+#    #+#             */
-/*   Updated: 2023/05/30 21:19:08 by kyoshida         ###   ########.fr       */
+/*   Updated: 2023/06/02 14:22:42 by kyoshida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!s)
 		return (NULL);
 	s2 = (char *)s;
-	if (ft_strlen(s) < len)
+	if (ft_strlen(s + start) < len)
 		len = ft_strlen(s + start);
 	ans = (char *)malloc(sizeof(char) * len + 1);
 	if (ans == NULL)
