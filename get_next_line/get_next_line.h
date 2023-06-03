@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 18:49:28 by kyoshida          #+#    #+#             */
-/*   Updated: 2023/05/17 17:23:26 by kyoshida         ###   ########.fr       */
+/*   Created: 2023/06/03 16:34:25 by kyoshida          #+#    #+#             */
+/*   Updated: 2023/06/03 19:49:13 by kyoshida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+#define GET_NEXT_LINE_H
 
-int	ft_isalpha(int num)
-{
-	return ((65 <= num && num <= 90) || (97 <= num && num <= 122));
-}
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
 
-// int	main(void)
-// {
-// 	if (ft_isalpha('3') == 0)
-// 		puts("no");
-// 	else
-// 		puts("yes");
-// }
+
+
+
+#endif
