@@ -3,31 +3,71 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
+/*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 16:35:38 by kyoshida          #+#    #+#             */
-/*   Updated: 2023/06/05 09:37:08 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2023/06/05 20:20:36 by kyoshida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char    *ft_read(int fd,char buf)
+char	*ft_output(char *read_string)
 {
-    buf=(char *)malloc(sizeof(char)*BUFFER_SIZE+1);
-    if(buf==NULL)
-    return NULL;
+	int		size;
+	int		i;
+	char	*ans;
 
+	i = 0;
+	while (*read_string[size] != '\n')
+		size++;
+	ans = (char *)malloc(sizeof(char) * size + 1);
+	if (ans == NULL)
+		return (NULL);
+	while (i < size)
+	{
+		ans[i] = read_string[i];
+		i++;
+	}
+	ans[i] = '\0';
+	free(read_string);
+	return (ans);
 }
 
-char  *get_next_line(int fd)
+char	*ft_read(int fd, char save_string)
 {
-    char    *line;
-    char    *save_string;
+	ssize_t	n_read;
+	char	*buf;
 
-    if(fd<=0 || BUFFER_SIZE<=0)
-        return NULL;
+	buf = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (buf == NULL)
+		return (NULL);
+	while (ft_strchr(buf, '\n') == NULL)
+	{
+		n_read = read(fd, buf, BUFFER_SIZE);
+		if (n_read == -1)
+			return (NULL);
+		buf[n_read] = '\0';
+		save_string = ft_strjoin(save_string, buf);
+	}
+	free(buf);
+	return (save_string);
+}
 
-    ft_read(fd,buf);
+char	*get_next_line(int fd)
+{
+	char		*line;
+	static		char *save_string = "";
+	char *read_string;
 
+	if (fd <= 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+
+	read_string = ft_read(fd, save_string);
+	save_string = ft_save(read_string);
+	line = ft_output(read_string);
+	if (!line)
+		return (NULL);
+
+	return (line);
 }
