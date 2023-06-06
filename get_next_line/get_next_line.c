@@ -6,7 +6,7 @@
 /*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 16:35:38 by kyoshida          #+#    #+#             */
-/*   Updated: 2023/06/06 20:59:08 by kyoshida         ###   ########.fr       */
+/*   Updated: 2023/06/06 22:17:11 by kyoshida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ static char	*ft_output(char *save_string)
 	char	*ans;
 
 	i = 0;
-	if (!save_string)
-		return (NULL);
-	while (save_string[i] != '\n')
+	// if (!save_string)
+	// 	return (NULL);
+	while (save_string[i] != '\n' && save_string[i] != '\0')
 		i++;
 	ans = (char *)malloc(sizeof(char) * i + 2);
 	if (ans == NULL)
 		return (NULL);
 	i = 0;
-	while (save_string[i] != '\n' && save_string[i])
+	while (save_string[i] != '\n' && save_string[i]!='\0')
 	{
 		ans[i] = save_string[i];
 		i++;
@@ -45,13 +45,14 @@ static char	*ft_save(char *save_string)
 
 	i = 0;
 	count = 0;
-	while (save_string[i] != '\n')
+	while (save_string[i] != '\n'&& save_string[i]!='\0')
 		i++;
 	save = (char *)malloc(sizeof(char) * ft_strlen(save_string) - i + 1);
 	if (!save)
 		return (NULL);
-	i += 1;
-	while (save_string[i] != '\0')
+	if(save_string[i]=='\n')
+		i += 1;
+	while (save_string[i] != '\0' )
 	{
 		save[count] = save_string[i];
 		i++;
@@ -66,11 +67,13 @@ static char	*ft_read(int fd, char *save_string)
 {
 	ssize_t	n_read;
 	char	*buf;
+	char	*tmp;
 
 	buf = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (buf == NULL)
 		return (NULL);
-	while (ft_strchr(buf, '\n') == NULL)
+	n_read = 0;
+	while (ft_strchr(buf, '\n') == NULL && n_read == BUFFER_SIZE)
 	{
 		n_read = read(fd, buf, BUFFER_SIZE);
 		if (n_read == -1)
@@ -79,7 +82,9 @@ static char	*ft_read(int fd, char *save_string)
 			return (NULL);
 		}
 		buf[n_read] = '\0';
-		save_string = ft_strjoin(save_string, buf);
+		tmp = save_string;
+		save_string = ft_strjoin(tmp, buf);
+		free(tmp);
 	}
 	free(buf);
 	return (save_string);
