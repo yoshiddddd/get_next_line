@@ -3,63 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
+/*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 16:35:38 by kyoshida          #+#    #+#             */
-/*   Updated: 2023/06/06 11:03:07 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2023/06/06 20:59:08 by kyoshida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*ft_output(char *read_string)
+static char	*ft_output(char *save_string)
 {
 	int		i;
 	char	*ans;
 
 	i = 0;
-    if(!read_string)
-    return NULL;
-	while (read_string[i] != '\n')
+	if (!save_string)
+		return (NULL);
+	while (save_string[i] != '\n')
 		i++;
 	ans = (char *)malloc(sizeof(char) * i + 2);
 	if (ans == NULL)
 		return (NULL);
-        i=0;
-	while (read_string[i]!='\n'&&read_string[i])
+	i = 0;
+	while (save_string[i] != '\n' && save_string[i])
 	{
-		ans[i] = read_string[i];
+		ans[i] = save_string[i];
 		i++;
 	}
-    if(read_string[i]=='\n')
-        ans[i++] = '\n';
+	if (save_string[i] == '\n')
+		ans[i++] = '\n';
 	ans[i] = '\0';
-	free(read_string);
 	return (ans);
 }
 
-static char    *ft_save(char *read_string)
+static char	*ft_save(char *save_string)
 {
-    int i;
-    int count;
-    char *save;
-    i=0;
-    count = 0;
-    while(read_string[i]!='\n')
-        i++;
-    
-    save = (char *)malloc(sizeof(char)*ft_strlen(read_string)-i+1);
-    if(!save)
-    return NULL;
-    i+=1;
-    while(read_string[i]!='\0')
-    {
-        save[count]=read_string[i];
-        i++;
-        count++;
-    }
-    save[count]='\0';
-    return save;
+	int		i;
+	int		count;
+	char	*save;
+
+	i = 0;
+	count = 0;
+	while (save_string[i] != '\n')
+		i++;
+	save = (char *)malloc(sizeof(char) * ft_strlen(save_string) - i + 1);
+	if (!save)
+		return (NULL);
+	i += 1;
+	while (save_string[i] != '\0')
+	{
+		save[count] = save_string[i];
+		i++;
+		count++;
+	}
+	save[count] = '\0';
+	free(save_string);
+	return (save);
 }
 
 static char	*ft_read(int fd, char *save_string)
@@ -74,10 +74,10 @@ static char	*ft_read(int fd, char *save_string)
 	{
 		n_read = read(fd, buf, BUFFER_SIZE);
 		if (n_read == -1)
-        {
-            free(buf);
+		{
+			free(buf);
 			return (NULL);
-        }
+		}
 		buf[n_read] = '\0';
 		save_string = ft_strjoin(save_string, buf);
 	}
@@ -88,17 +88,14 @@ static char	*ft_read(int fd, char *save_string)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static		char *save_string;
-	char *read_string;
+	static char	*save_string;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-
-	read_string = ft_read(fd, save_string);
-	save_string = ft_save(read_string);
-	line = ft_output(read_string);
-	if (!line)
+	save_string = ft_read(fd, save_string);
+	if (!save_string)
 		return (NULL);
-
+	line = ft_output(save_string);
+	save_string = ft_save(save_string);
 	return (line);
 }

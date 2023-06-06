@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
+/*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 16:35:34 by kyoshida          #+#    #+#             */
-/*   Updated: 2023/06/05 23:40:12 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2023/06/06 18:20:58 by kyoshida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 char	*ft_strchr(const char *s, int c)
 {
 	char	ch;
-    char    *s2;
+	char	*s2;
+
 	ch = (char)c;
-    s2 = (char*)s;
+	s2 = (char *)s;
 	while (*s != '\0')
 	{
 		if (*s == ch)
