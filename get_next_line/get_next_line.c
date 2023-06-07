@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 16:35:38 by kyoshida          #+#    #+#             */
-/*   Updated: 2023/06/06 22:17:11 by kyoshida         ###   ########.fr       */
+/*   Updated: 2023/06/07 11:03:30 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static char	*ft_output(char *save_string)
 	char	*ans;
 
 	i = 0;
-	// if (!save_string)
-	// 	return (NULL);
+	if (save_string[i]=='\0')
+		return (NULL);
 	while (save_string[i] != '\n' && save_string[i] != '\0')
 		i++;
 	ans = (char *)malloc(sizeof(char) * i + 2);
@@ -47,17 +47,17 @@ static char	*ft_save(char *save_string)
 	count = 0;
 	while (save_string[i] != '\n'&& save_string[i]!='\0')
 		i++;
+    if(save_string[i]=='\0')
+    {
+        free(save_string);
+        return NULL;
+    }
 	save = (char *)malloc(sizeof(char) * ft_strlen(save_string) - i + 1);
 	if (!save)
 		return (NULL);
-	if(save_string[i]=='\n')
 		i += 1;
 	while (save_string[i] != '\0' )
-	{
-		save[count] = save_string[i];
-		i++;
-		count++;
-	}
+		save[count++] = save_string[i++];
 	save[count] = '\0';
 	free(save_string);
 	return (save);
@@ -72,8 +72,8 @@ static char	*ft_read(int fd, char *save_string)
 	buf = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (buf == NULL)
 		return (NULL);
-	n_read = 0;
-	while (ft_strchr(buf, '\n') == NULL && n_read == BUFFER_SIZE)
+	n_read =1;
+	while (ft_strchr(buf, '\n') == NULL&&n_read!=0 )
 	{
 		n_read = read(fd, buf, BUFFER_SIZE);
 		if (n_read == -1)
