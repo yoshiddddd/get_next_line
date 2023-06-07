@@ -6,7 +6,7 @@
 /*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 16:35:34 by kyoshida          #+#    #+#             */
-/*   Updated: 2023/06/06 18:20:58 by kyoshida         ###   ########.fr       */
+/*   Updated: 2023/06/07 19:44:17 by kyoshida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,15 @@ char	*ft_strchr(const char *s, int c)
 	char	ch;
 	char	*s2;
 
+	if (!s)
+		return (NULL);
 	ch = (char)c;
 	s2 = (char *)s;
-	while (*s != '\0')
+	while (*s2 != '\0')
 	{
-		if (*s == ch)
+		if (*s2 == ch)
 			return (s2);
-		s++;
+		s2++;
 	}
 	return (NULL);
 }
